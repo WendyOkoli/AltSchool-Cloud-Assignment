@@ -15,6 +15,7 @@
 ![Create file using echo command](/images/EchoCommand.png)
 
 * Copy contents of fileA into fileC
+  
 ![Copy Contents of FileA To FileC](/images/CopyContentofFileAToFileC.png)
 
 
