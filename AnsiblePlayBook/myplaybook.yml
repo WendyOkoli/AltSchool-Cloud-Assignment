@@ -39,7 +39,7 @@
       
     - name: copy our custom page
       ansible.builtin.copy:
-        src: /home/vagrant/ansible/web_repo/AltSchool-Assignment-3
+        src: /home/vagrant/ansible/web_repo/AltSchool-Assignment-3/
         dest: /var/www/html/
         owner: root
         group: root
