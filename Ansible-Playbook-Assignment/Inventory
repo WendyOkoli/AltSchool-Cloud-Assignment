@@ -1,0 +1,6 @@
+
+[Debian]
+192.168.56.16 apache_package=apache2 apache_service=apache2 git_package=git
+
+[CentOS]
+192.168.56.15 apache_package=httpd apache_service=httpd git_package=git
