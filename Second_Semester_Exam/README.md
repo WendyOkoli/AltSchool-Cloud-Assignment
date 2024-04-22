@@ -14,4 +14,4 @@ Create a cron job to check the server’s uptime every 12 am.
 
 ## Steps used to achieve the aforementioned objectives
 
-1. Created and automated the provisioning two Ubuntu S
+1. Created and automated the provisioning two Ubuntu Servers

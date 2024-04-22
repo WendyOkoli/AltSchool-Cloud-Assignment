@@ -1,0 +1,40 @@
+---
+- hosts: 192.168.56.33
+  become: yes
+  tasks:
+    - name: Copy bash script to slave node
+      copy:
+        src: /home/vagrant/Ansible/myLAMP.sh
+        dest: /home/vagrant/myLAMP.sh
+        mode: 0755
+
+    - name: Execute bash script on slave node
+      shell: /home/vagrant/myLAMP.sh
+
+    - name: Set cron job to check uptime of the server every 12 am
+      cron:
+        name: Check uptime every 12 am
+        minute: "0"
+        hour: "0"
+        job: "/usr/bin/uptime > /var/log/uptime.log"
+
+    - name: Check Server Uptime
+      command: uptime -p
+      register: uptime_out
+
+    - name: Print Out Server Up-Time in Play
+      debug:
+        var: uptime_out.stdout
+
+    - name: Check PHP Application Accessibility
+      uri:
+        url: http://192.168.56.33
+        return_content: yes
+      register: php_app_response
+      ignore_errors: true
+
+    - name: Display Message if PHP Application is Accessible
+      debug:
+        msg: "PHP Application is Accessible"
+      when: php_app_response.rc == 0
+...
