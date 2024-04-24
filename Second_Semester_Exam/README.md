@@ -52,7 +52,7 @@ Inventory file
 ![Inventory](/Second_Semester_Exam/Images/Inventory.png)
 
 ii. The script I created in the Ansible folder - `myLAMP.sh`. It is a readable and reusable script that will aid in the automation and installation of dependencies needed for my LAMP deployment. Here is what the script looks like
-
+```
 #!/bin/bash
 
 # Update system
@@ -145,12 +145,13 @@ sudo php artisan db:seed
 sudo systemctl restart apache2
 
 echo "Laravel deployment is successful!"
+```
 
 A snippet of the script below
 ![myLAMP.sh](/Second_Semester_Exam/Images/myLAMP.sh.png)
 
 iii. I created an Ansible playbook - `myLAMP.yml` to execute my `myLAMP.sh` script on my slave machine. I also added a cron job task that checks the uptime of the server every 12am to the playbook.
-
+```
 ---
 - hosts: 192.168.56.33
   become: yes
@@ -191,6 +192,7 @@ iii. I created an Ansible playbook - `myLAMP.yml` to execute my `myLAMP.sh` scri
         msg: "PHP Application is Accessible"
       when: php_app_response.rc == 0
 ...
+```
 
 Here is a snippet 
 ![myLAMP.yml](/Second_Semester_Exam/Images/myLAMP.yml.png)
