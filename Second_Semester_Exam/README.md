@@ -4,7 +4,8 @@
  This documentation outlines a streamlined approach to automate the deployment of a LAMP (Linux, Apache, MySQL, PHP) stack on Ubuntu-based servers using Vagrant, Ansible, and Bash scripting. 
 
  ## Objectives
- Automate the provisioning of two Ubuntu-based servers, named “Master” and “Slave”, using Vagrant.
+ 
+Automate the provisioning of two Ubuntu-based servers, named “Master” and “Slave”, using Vagrant.
 On the Master node, create a bash script to automate the deployment of a LAMP (Linux, Apache, MySQL, PHP) stack.
 This script should clone a PHP application from GitHub, install all necessary packages, and configure Apache web server and MySQL. 
 Ensure the bash script is reusable and readable.
@@ -14,12 +15,13 @@ Create a cron job to check the server’s uptime every 12 am.
 
 ## Steps used to achieve the aforementioned objectives
 
-1. I created and automated the provisioning two Ubuntu Servers - Master and Slave. I edited the configuration of their vagrantfiles, changing the hostname and disable the ssh insert key.
+1. I created and automated the provisioning of two Ubuntu Servers - Master and Slave. I edited the configuration of their vagrant files, changing the hostname and disabling the SSH insert key.
+   
 ![Master vagrantfile](/Second_Semester_Exam/Images/Master_vagrantfile.png)
 
 ![Slave vagrantfile](/Second_Semester_Exam/Images/Slave_vagrantfile.png)
 
-2. I created the public keys of the two machines and had them copied and pasted interchangeable. I also set the ssh config file pub key and password authentication to yes. this was done to enable connection between the two machines
+2. I created the public keys of the two machines and had them copied and pasted interchangeably. I also set the ssh config file pub key and password authentication to yes. this was done to enable connection between the two machines
 
 ```
 ssh-keygen -t ed25519 -C 
@@ -49,9 +51,11 @@ ansible all -m ping -i inventory
 ![Slave ping](/Second_Semester_Exam/Images/Ansible_Slave_Ping.png)
 
 Inventory file
+
 ![Inventory](/Second_Semester_Exam/Images/Inventory.png)
 
 ii. The script I created in the Ansible folder - `myLAMP.sh`. It is a readable and reusable script that will aid in the automation and installation of dependencies needed for my LAMP deployment. Here is what the script looks like
+
 ```
 #!/bin/bash
 
@@ -148,9 +152,11 @@ echo "Laravel deployment is successful!"
 ```
 
 A snippet of the script below
+
 ![myLAMP.sh](/Second_Semester_Exam/Images/myLAMP.sh.png)
 
-iii. I created an Ansible playbook - `myLAMP.yml` to execute my `myLAMP.sh` script on my slave machine. I also added a cron job task that checks the uptime of the server every 12am to the playbook.
+iii. I created an Ansible playbook - `myLAMP.yml` to execute my `myLAMP.sh` script on my slave machine. I also added a cron job task that checks the uptime of the server every 12 am to the playbook.
+
 ```
 ---
 - hosts: 192.168.56.33
@@ -195,15 +201,19 @@ iii. I created an Ansible playbook - `myLAMP.yml` to execute my `myLAMP.sh` scri
 ```
 
 Here is a snippet 
+
 ![myLAMP.yml](/Second_Semester_Exam/Images/myLAMP.yml.png)
 
 The successful output after several errors
+
 ![myLAMP.yml output](/Second_Semester_Exam/Images/myLAMP.yml_Output.png)
 
 4. After deployment, I verified that the PHP application is accessible through the Slave node's IP address via the web browser.
+   
 ![Web browser](/Second_Semester_Exam/Images/Laravel_Deployment_on_slave.png)
 
 ## Conclusion
+
 In conclusion, this documentation demonstrates the power of automation using Vagrant, Ansible, and Bash scripting to deploy a LAMP stack and PHP application on Ubuntu servers efficiently. By following this guide, you'll be equipped to automate server provisioning, application deployment, and monitoring tasks, improving the reliability and scalability of your infrastructure.
 
 
